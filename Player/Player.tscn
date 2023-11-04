@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0vtwbarn1fnx"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_juw4c"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_8d57k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i7xv"]
 albedo_color = Color(0.741176, 0.298039, 0.0705882, 1)
@@ -24,7 +24,7 @@ func _process(delta):
 [sub_resource type="SphereShape3D" id="SphereShape3D_udv67"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
-script = ExtResource("1_juw4c")
+script = ExtResource("1_8d57k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2i7xv")

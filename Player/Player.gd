@@ -18,7 +18,10 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-1 * event.relative.x))
-		$pivot.rotate_x(deg_to_rad(-1 * event.relative.y))
+		if (rad_to_deg($pivot.rotation.x) > -85 and deg_to_rad(-1 * event.relative.y) < 0):
+			$pivot.rotate_x(deg_to_rad(-1 * event.relative.y))
+		elif (rad_to_deg($pivot.rotation.x) < 85 and deg_to_rad(-1 * event.relative.y) > 0):
+			$pivot.rotate_x(deg_to_rad(-1 * event.relative.y))
 
 
 func _physics_process(delta):

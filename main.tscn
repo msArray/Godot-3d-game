@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://3xoeu4klu4tb"]
+[gd_scene load_steps=10 format=3 uid="uid://3xoeu4klu4tb"]
 
-[ext_resource type="PackedScene" uid="uid://d0vtwbarn1fnx" path="res://Player.tscn" id="1_0gr61"]
+[ext_resource type="PackedScene" uid="uid://d0vtwbarn1fnx" path="res://Player/Player.tscn" id="1_0gr61"]
+[ext_resource type="Script" path="res://main.gd" id="1_sxgmd"]
 [ext_resource type="Shader" path="res://SkyShader.gdshader" id="2_j4pmo"]
 [ext_resource type="Texture2D" uid="uid://gp2japeolgtd" path="res://quarry_04_puresky_4k.exr" id="3_wc5u0"]
 
@@ -26,10 +27,11 @@ process_mode = 1
 background_mode = 2
 sky = SubResource("Sky_qfirl")
 ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(0, 0.894118, 0.937255, 1)
 reflected_light_source = 2
 
 [node name="Main" type="Node"]
+script = ExtResource("1_sxgmd")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -46,5 +48,5 @@ mesh = SubResource("BoxMesh_yvi5m")
 environment = SubResource("Environment_1um3j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 500, 1000)
 shadow_enabled = true
