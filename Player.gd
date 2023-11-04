@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var fall_acceleration = 75
 
 const SPEED  = 10.0
-const JUMP_VELOCITY = 5.5
+const JUMP_VELOCITY = 9.8
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var move_mag = 1

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player.gd" id="1_juw4c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2i7xv"]
-albedo_color = Color(0.662745, 0.713726, 1, 1)
+albedo_color = Color(0.741176, 0.298039, 0.0705882, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_bkgad"]
 

@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://3xoeu4klu4tb"]
+[gd_scene load_steps=9 format=3 uid="uid://3xoeu4klu4tb"]
 
 [ext_resource type="PackedScene" uid="uid://d0vtwbarn1fnx" path="res://Player.tscn" id="1_0gr61"]
+[ext_resource type="Shader" path="res://SkyShader.gdshader" id="2_j4pmo"]
+[ext_resource type="Texture2D" uid="uid://gp2japeolgtd" path="res://quarry_04_puresky_4k.exr" id="3_wc5u0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rumii"]
 size = Vector3(60, 1, 60)
@@ -9,6 +11,23 @@ size = Vector3(60, 1, 60)
 lightmap_size_hint = Vector2i(604, 316)
 add_uv2 = true
 size = Vector3(60, 1, 60)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohi52"]
+shader = ExtResource("2_j4pmo")
+shader_parameter/skyColor = Color(0.631373, 0.752941, 1, 1)
+shader_parameter/horizonColor = Color(1, 1, 1, 1)
+shader_parameter/skyTexture = ExtResource("3_wc5u0")
+
+[sub_resource type="Sky" id="Sky_qfirl"]
+sky_material = SubResource("ShaderMaterial_ohi52")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_1um3j"]
+background_mode = 2
+sky = SubResource("Sky_qfirl")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
 
 [node name="Main" type="Node"]
 
@@ -21,7 +40,11 @@ shape = SubResource("BoxShape3D_rumii")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_yvi5m")
 
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_0gr61")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1um3j")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0)
-
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_0gr61")]
+shadow_enabled = true
