@@ -26,9 +26,14 @@ func _input(event):
 
 func _physics_process(delta):
 	
+	if global_position.y < -50:
+		global_position = Vector3(0,0,0)
+		$pivot.rotation.x = 0
+		$pivot.rotation.y = 0
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		move_mag = 0.5
+		move_mag = 0.75
 	else:
 		move_mag = 1
 	

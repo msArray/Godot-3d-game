@@ -1,17 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://3xoeu4klu4tb"]
+[gd_scene load_steps=11 format=3 uid="uid://3xoeu4klu4tb"]
 
 [ext_resource type="PackedScene" uid="uid://d0vtwbarn1fnx" path="res://Player/Player.tscn" id="1_0gr61"]
 [ext_resource type="Script" path="res://main.gd" id="1_sxgmd"]
 [ext_resource type="Shader" path="res://SkyShader.gdshader" id="2_j4pmo"]
 [ext_resource type="Texture2D" uid="uid://gp2japeolgtd" path="res://quarry_04_puresky_4k.exr" id="3_wc5u0"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rumii"]
-size = Vector3(60, 1, 60)
-
-[sub_resource type="BoxMesh" id="BoxMesh_yvi5m"]
-lightmap_size_hint = Vector2i(604, 316)
-add_uv2 = true
-size = Vector3(60, 1, 60)
+[ext_resource type="PackedScene" uid="uid://xi2s6uybw2oo" path="res://StageItems/box.tscn" id="5_8n3p5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ohi52"]
 shader = ExtResource("2_j4pmo")
@@ -25,22 +18,22 @@ process_mode = 1
 
 [sub_resource type="Environment" id="Environment_1um3j"]
 background_mode = 2
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_qfirl")
 ambient_light_source = 3
 ambient_light_color = Color(0, 0.894118, 0.937255, 1)
 reflected_light_source = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rumii"]
+size = Vector3(60, 1, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvi5m"]
+lightmap_size_hint = Vector2i(604, 316)
+add_uv2 = true
+size = Vector3(60, 1, 60)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_sxgmd")
-
-[node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_rumii")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_yvi5m")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_0gr61")]
 
@@ -49,4 +42,23 @@ environment = SubResource("Environment_1um3j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 500, 1000)
+light_energy = 5.0
 shadow_enabled = true
+shadow_bias = 0.0
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Ground"]
+shape = SubResource("BoxShape3D_rumii")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stage/Ground"]
+mesh = SubResource("BoxMesh_yvi5m")
+
+[node name="Box" parent="Stage" instance=ExtResource("5_8n3p5")]
+transform = Transform3D(5, 0, 0, 0, 3, 0, 0, 0, 1, 0, 1, 9)
+
+[node name="Box2" parent="Stage" instance=ExtResource("5_8n3p5")]
+transform = Transform3D(5, 0, 0, 0, 6, 0, 0, 0, 1, 0, 2, 12)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://xi2s6uybw2oo"]
+
+[ext_resource type="Script" path="res://StageItems/box.gd" id="1_s73np"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4odtf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ip8m"]
+albedo_color = Color(0, 0.721569, 0.239216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tayno"]
+
+[node name="Box" type="StaticBody3D"]
+script = ExtResource("1_s73np")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4odtf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8ip8m")
+mesh = SubResource("BoxMesh_tayno")

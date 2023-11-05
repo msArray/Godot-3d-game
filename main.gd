@@ -8,6 +8,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	#$Stage.module = float(1.0 - abs($CharacterBody3D/pivot.rotation.x)/90)
+	
 	if Input.is_action_just_pressed("Open_Menu"):
 		get_tree().quit()
 	
