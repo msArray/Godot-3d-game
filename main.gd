@@ -29,6 +29,7 @@ func _process(delta):
 		while _client.get_available_packet_count():
 			var data = _client.get_packet().get_string_from_utf8()
 			print("Packet: ", JSON.parse_string(data).id)
+			_client.send_text("message Resieved")
 	elif state == WebSocketPeer.STATE_CLOSING:
 		pass
 	elif state == WebSocketPeer.STATE_CLOSED:
